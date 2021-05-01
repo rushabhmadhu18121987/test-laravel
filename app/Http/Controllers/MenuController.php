@@ -95,6 +95,12 @@ class MenuController extends BaseController
      */
 
     public function getMenuItems() {
+        try {
+            $data = MenuItem::with('children')->get();
+            return json_encode($data);die;
+        } catch (\Exception $ex) {
+            return json_encode(["success"=>1,"message"=>$ex->getMessage()]);
+        }
         throw new \Exception('implement in coding task 3');
     }
 }
